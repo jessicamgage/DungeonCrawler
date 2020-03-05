@@ -14,11 +14,16 @@ public class Races {
     static int strength(){
         strScore = ThreadLocalRandom.current().nextInt(4, 19);
 
+        System.out.println("Your strength is " + strScore);
+
         return strScore;
     }
 
     static int dexterity(){
         dexScore = ThreadLocalRandom.current().nextInt(4, 19);
+
+        System.out.println("Your dexterity is " + dexScore);
+
 
         return dexScore;
     }
@@ -26,11 +31,17 @@ public class Races {
     static int constitution(){
         conScore = ThreadLocalRandom.current().nextInt(4, 19);
 
+        System.out.println("Your constitution is " + conScore);
+
+
         return conScore;
     }
 
     static int intelligence(){
         intScore = ThreadLocalRandom.current().nextInt(4, 19);
+
+        System.out.println("Your intelligence is " + intScore);
+
 
         return intScore;
     }
@@ -38,13 +49,51 @@ public class Races {
     static int wisdom(){
         wisScore = ThreadLocalRandom.current().nextInt(4, 19);
 
+        System.out.println("Your wisdom is " + wisScore);
+
+
         return wisScore;
     }
 
     static int charisma(){
         chaScore = ThreadLocalRandom.current().nextInt(4, 19);
 
+        System.out.println("Your charisma is " + chaScore);
+
+
         return chaScore;
+    }
+
+    public static String classRecommendation(){
+        String classRecommendation = null;
+
+        do{
+            int highestScore = 0;
+            if(highestScore == 0){
+                highestScore = strScore;
+                classRecommendation = "With such a high strength, you would make a good barbarian, fighter, or paladin.";
+            }if(dexScore > strScore){
+                highestScore = dexScore;
+                classRecommendation = "With such a high dexterity, you would make a good ranger, rogue or monk.";
+            }if(conScore > highestScore){
+                highestScore = conScore;
+                classRecommendation = "With such a high constitution, you would make a good barbarian.";
+            }if(intScore > highestScore){
+                highestScore = intScore;
+                classRecommendation = "With such a high intelligence, you would make a good wizard.";
+            }if(wisScore > highestScore){
+                highestScore = wisScore;
+                classRecommendation = "With such a high wisdom, you would make a good druid, monk, or cleric.";
+            }if(chaScore > highestScore){
+                highestScore = chaScore;
+                classRecommendation = "With such a high charisma, you would make a good bard, sorcerer, warlock or " +
+                        "paladin.";
+            }
+        }while(classRecommendation == null);
+
+        System.out.println(classRecommendation);
+
+        return classRecommendation;
     }
 
 
@@ -86,6 +135,8 @@ public class Races {
                 raceList.put("warforged", "robotic creatures made to serve as war machines");
 
                 System.out.println(raceList.toString());
+
+                raceAnswer = null;
 
             }else if(raceAnswer.equalsIgnoreCase("aarakocra")){
                 strScore += 2;

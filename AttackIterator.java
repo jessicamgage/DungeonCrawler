@@ -1,8 +1,10 @@
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.Random;
 
-public class AttackIterator {
+public class AttackIterator extends Creature{
     public static void main(String[] args) {
+
+        Races.raceType();
 
         Races.strength();
         Races.dexterity();
@@ -11,46 +13,45 @@ public class AttackIterator {
         Races.wisdom();
         Races.charisma();
 
-        Races.raceType();
+        Races.classRecommendation();
 
-        HashMap<Integer, String> enemyListHMap = new HashMap<>();
+        ArrayList<String> enemyList = new ArrayList<>();
+        enemyList.add("goblin");
+        enemyList.add("wolf");
+        enemyList.add("bandit");
+        enemyList.add("swarm-of-bats");
 
-        enemyListHMap.put(0, "goblin");
-        enemyListHMap.put(1, "wolf");
-        enemyListHMap.put(2, "bandit");
-        enemyListHMap.put(3, "swarm of bats");
+        Random arrayRand = new Random();
+        int enemyChoice = arrayRand.nextInt(4);
 
-        int enemyArmorClass = 0;
+        int enemyAC = 0;
         int enemyHP = 0;
         boolean enemyAlive = true;
 
         int playerHP = 10;
-        int playerArmorClass = 12;
+        int playerAC = 12;
         boolean playerAlive = true;
 
-        Random hMapRand = new Random();
-        int enemyChoice = hMapRand.nextInt(3);
-
-        String enemy = enemyListHMap.get(enemyChoice);
+        String enemy = enemyList.get(enemyChoice);
 
         System.out.println("You encountered a " + enemy + "!");
 
         switch (enemyChoice) {
             case 0:
-                enemyArmorClass = 14;
-                enemyHP = 7;
+                monsterInfo("goblin");
+
                 break;
             case 1:
-                enemyArmorClass = 12;
-                enemyHP = 10;
+                monsterInfo("wolf");
+
                 break;
             case 2:
-                enemyArmorClass = 13;
-                enemyHP = 15;
+                monsterInfo("bandit");
+
                 break;
             case 3:
-                enemyArmorClass = 10;
-                enemyHP = 18;
+                monsterInfo("swarm-of-bats");
+
                 break;
 
         }
@@ -59,9 +60,9 @@ public class AttackIterator {
             while (enemyHP > 0) {
 
                 int playerToHit = returnRandomNumber(20);
-                int playerDamageDone = returnRandomNumber(6);
+                int playerDamageDone = (returnRandomNumber(6) + 1);
 
-                if (playerToHit >= enemyArmorClass) {
+                if (playerToHit >= enemyAC) {
                     if (playerToHit == 20) {
                         System.out.println("You landed a critical hit!");
                         enemyHP -= playerDamageDone * 2;
@@ -76,16 +77,15 @@ public class AttackIterator {
                 break;
             }
 
-
             if (enemyHP <= 0) {
                 enemyAlive = false;
             }
 
             while (enemyAlive) {
                 int enemyToHit = returnRandomNumber(20);
-                int damageTaken = returnRandomNumber(6);
+                int damageTaken = (returnRandomNumber(6) + 1);
 
-                if (enemyToHit >= playerArmorClass) {
+                if (enemyToHit >= playerAC) {
                     System.out.println("The " + enemy + " hit you for " + damageTaken + " points of damage.");
                     if (enemyToHit == 20) {
                         System.out.println("You have taken a critical hit!");
