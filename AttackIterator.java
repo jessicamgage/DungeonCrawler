@@ -15,6 +15,10 @@ public class AttackIterator extends Creature{
 
         Races.classRecommendation();
 
+        String whatClass = null;
+
+        whatClass = ClassActions.classChoice();
+
         ArrayList<String> enemyList = new ArrayList<>();
         enemyList.add("goblin");
         enemyList.add("wolf");
@@ -24,11 +28,14 @@ public class AttackIterator extends Creature{
         Random arrayRand = new Random();
         int enemyChoice = arrayRand.nextInt(4);
 
-        int enemyAC = 0;
-        int enemyHP = 0;
+        int armorClass = 0;
+        int hitPoints = 0;
         boolean enemyAlive = true;
 
-        int playerHP = 10;
+        int playerHP = 10 + ModStats.modScore(Races.conScore);
+
+        System.out.println(playerHP);
+
         int playerAC = 12;
         boolean playerAlive = true;
 
@@ -38,46 +45,64 @@ public class AttackIterator extends Creature{
 
         switch (enemyChoice) {
             case 0:
-                monsterInfo("goblin");
+                Creature goblin = new Creature();
+                goblin.setHitPoints(7);
+                hitPoints = goblin.getHitPoints();
+                goblin.setArmorClass(14);
+                armorClass = goblin.getArmorClass();
 
                 break;
             case 1:
-                monsterInfo("wolf");
+                Creature wolf = new Creature();
+                wolf.setHitPoints(11);
+                hitPoints = wolf.getHitPoints();
+                wolf.setArmorClass(13);
+                armorClass = wolf.getArmorClass();
 
                 break;
             case 2:
-                monsterInfo("bandit");
+                Creature bandit = new Creature();
+                bandit.setHitPoints(11);
+                hitPoints = bandit.getHitPoints();
+                bandit.setArmorClass(12);
+                armorClass = bandit.getArmorClass();
 
                 break;
             case 3:
-                monsterInfo("swarm-of-bats");
+                Creature batSwarm = new Creature();
+                batSwarm.setHitPoints(22);
+                hitPoints = batSwarm.getHitPoints();
+                batSwarm.setArmorClass(12);
+                armorClass = batSwarm.getArmorClass();
 
                 break;
-
         }
 
         while (enemyAlive && playerAlive) {
-            while (enemyHP > 0) {
+            while (hitPoints > 0) {
 
                 int playerToHit = returnRandomNumber(20);
-                int playerDamageDone = (returnRandomNumber(6) + 1);
 
-                if (playerToHit >= enemyAC) {
+                int playerDamageDone = ((returnRandomNumber(6)) + (1) +
+                        (ModStats.modScore(ClassActions.attackModifier(whatClass)))); //pulls mod score depending
+                //on the class that the player chose -- if a barbarian is chosen, strength modifier is used
+
+                if (playerToHit >= armorClass) {
                     if (playerToHit == 20) {
                         System.out.println("You landed a critical hit!");
-                        enemyHP -= playerDamageDone * 2;
+                        hitPoints -= playerDamageDone * 2;
                     } else {
                         System.out.println("You hit!");
-                        enemyHP -= playerDamageDone;
+                        hitPoints -= playerDamageDone;
                     }
-                    if (enemyHP <= 0) {
+                    if (hitPoints <= 0) {
                         System.out.println("You defeated the " + enemy + "!");
                     }
                 } else System.out.println("You missed!");
                 break;
             }
 
-            if (enemyHP <= 0) {
+            if (hitPoints <= 0) {
                 enemyAlive = false;
             }
 
@@ -106,14 +131,9 @@ public class AttackIterator extends Creature{
             }
         }
     }
-
-    private static int returnRandomNumber(int i) {
+    public static int returnRandomNumber(int i) {
         Random rand = new Random();
         int randomNumber = rand.nextInt(i);
         return randomNumber;
     }
-
 }
-
-
-

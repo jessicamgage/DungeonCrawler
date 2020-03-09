@@ -101,6 +101,7 @@ public class Races {
     public static String raceType(){
 
         String raceAnswer = null;
+        String subRaceAnswer = null;
 
         while(raceAnswer == null) {
 
@@ -119,7 +120,7 @@ public class Races {
                 raceList.put("centaur", "clumsy, half-man, half-horse wanderers");
                 raceList.put("dwarf", "stout humanoids, excellent forgers");
                 raceList.put("dragonborn", "large, bipedal lizard-folk with elemental breath attacks");
-                raceList.put("elf", "wise, large-eared bipeds who live long lives");
+                raceList.put("elf", "wise, large-eared bipeds who live long lives; can be wood or high elves");
                 raceList.put("goblin", "small, nimble humanoids");
                 raceList.put("goliath", "enormous, tough humanoids");
                 raceList.put("gnome", "short, wonder-filled humanoids");
@@ -161,9 +162,39 @@ public class Races {
                 strScore += 2;
                 chaScore += 1;
 
+                Scanner dragonbornSubRace = new Scanner(System.in);
+                subRaceAnswer = dragonbornSubRace.next();
+
+                if(subRaceAnswer.equalsIgnoreCase("blue")){
+
+                }else if(subRaceAnswer.equalsIgnoreCase("red")){
+
+                }else if(subRaceAnswer.equalsIgnoreCase("yellow")){
+
+                }else{
+                    System.out.println("Sorry, blue, red and yellow dragonborns are the only available breeds.");
+                    subRaceAnswer = null;
+                }
+
             }else if(raceAnswer.equalsIgnoreCase("elf")){
                 dexScore += 2;
-                intScore += 1;
+
+                System.out.println("Would you like to be a high elf or a wood elf?");
+
+                while(subRaceAnswer == null){
+                    Scanner elfSubRace = new Scanner(System.in);
+                    subRaceAnswer = elfSubRace.next();
+
+
+                    if(subRaceAnswer.equalsIgnoreCase("wood")){
+                       wisScore += 1;
+                    }else if(subRaceAnswer.equalsIgnoreCase("high")){
+                        intScore += 1;
+                    }else{
+                        subRaceAnswer = null;
+                        System.out.println("Sorry, that is not a valid subspecies of elf. Please try again.");
+                    }
+                }
 
             }else if(raceAnswer.equalsIgnoreCase("goblin")){
                 dexScore += 2;

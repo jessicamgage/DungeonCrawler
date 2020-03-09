@@ -8,8 +8,7 @@ public class DeathSavingThrows {
 
         while(totalDeathSaves<= 5){
 
-            Random saveResult = new Random();
-            int passOrFail = saveResult.nextInt(20);
+            int passOrFail = AttackIterator.returnRandomNumber(20);
 
             if(passOrFail >= 10){
                 if(passOrFail == 20){
