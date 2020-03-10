@@ -21,11 +21,7 @@ public class ModStats{
             statScore = -1;
         }else if(statScore == 9){
             statScore = -1;
-        }else if(statScore == 10){
-
-        }else if(statScore == 11){
-
-        }else if(statScore == 12){
+        }else if(statScore == 12){ //stats that are from 10-11 have no modifier; else if block redundant
             statScore = 1;
         }else if(statScore == 13){
             statScore = 1;

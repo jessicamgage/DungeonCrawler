@@ -2,6 +2,9 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class AttackIterator extends Creature{
+
+    static String whatClass = null; //whatClass was previously string in main thread before breaking code
+
     public static void main(String[] args) {
 
         Races.raceType();
@@ -15,9 +18,9 @@ public class AttackIterator extends Creature{
 
         Races.classRecommendation();
 
-        String whatClass = null;
+        whatClass = ClassActions.classChoice(); //prompts player to choose a class.
 
-        whatClass = ClassActions.classChoice();
+        String attackClass = whatClass;
 
         ArrayList<String> enemyList = new ArrayList<>();
         enemyList.add("goblin");
@@ -33,8 +36,6 @@ public class AttackIterator extends Creature{
         boolean enemyAlive = true;
 
         int playerHP = 10 + ModStats.modScore(Races.conScore);
-
-        System.out.println(playerHP);
 
         int playerAC = 12;
         boolean playerAlive = true;
@@ -83,9 +84,10 @@ public class AttackIterator extends Creature{
 
                 int playerToHit = returnRandomNumber(20);
 
-                int playerDamageDone = ((returnRandomNumber(6)) + (1) +
-                        (ModStats.modScore(ClassActions.attackModifier(whatClass)))); //pulls mod score depending
-                //on the class that the player chose -- if a barbarian is chosen, strength modifier is used
+                int playerDamageDone = (PlayerWeapons.availableWeaponDamage(attackClass) +
+                        (ModStats.modScore(ClassActions.attackModifier(attackClass)))); //pulls weapon and
+                // mod score depending on the class that the player chose -- if a barbarian is chosen,
+                // greataxe is used and strength modifier is used
 
                 if (playerToHit >= armorClass) {
                     if (playerToHit == 20) {
@@ -131,6 +133,7 @@ public class AttackIterator extends Creature{
             }
         }
     }
+
     public static int returnRandomNumber(int i) {
         Random rand = new Random();
         int randomNumber = rand.nextInt(i);

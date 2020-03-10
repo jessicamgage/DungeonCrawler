@@ -1,36 +1,49 @@
-import java.lang.reflect.Array;
-
-import java.util.Random;
-
 public class PlayerWeapons{
-    public static void main(String[] args) {
+    String classInfo = AttackIterator.whatClass;
 
-        String[] weaponArray = {"short sword", "longsword", "quarterstaff", "javelin", "iron knuckles", "great axe"};
+    public static void main(String[] args){
+    }
 
-        Random weaponRandomizer = new Random();
-        int weaponChoice = weaponRandomizer.nextInt(5);
+    public static int availableWeaponDamage(String classInfo){
+        int damageDone = 0;
 
-        Object weapon = Array.get(weaponArray, weaponChoice);
+        if(ClassActions.classChoice().equalsIgnoreCase("barbarian")){
+            damageDone = Weapons.getGreatAxeDamage();
 
-        weapon = weapon.toString();
+        }else if(ClassActions.classChoice().equalsIgnoreCase("bard")){
+            damageDone = Weapons.getShortswordDamage();
 
-        int[] weaponDamageArray = new int[]{};
+        }else if(ClassActions.classChoice().equalsIgnoreCase("cleric")){
+            damageDone = Weapons.getLongswordDamage();
 
-        if (weapon == "short sword" || weapon == "quarterstaff" || weapon == "javelin" || weapon == "iron knuckles")
-        {
-            weaponDamageArray = new int[]{1, 2, 3, 4, 5, 6};
+        }else if(ClassActions.classChoice().equalsIgnoreCase("druid")){
+            damageDone = Weapons.getKnifeDamage();
+
+        }else if(ClassActions.classChoice().equalsIgnoreCase("fighter")){
+            damageDone = Weapons.getLongswordDamage();
+
+        }else if(ClassActions.classChoice().equalsIgnoreCase("monk")){
+            damageDone = Weapons.getJavelinDamage();
+
+        }else if(ClassActions.classChoice().equalsIgnoreCase("paladin")){
+            damageDone = Weapons.getGreatAxeDamage();
+
+        }else if(ClassActions.classChoice().equalsIgnoreCase("ranger")){
+            damageDone = Weapons.getLongbowDamage();
+
+        }else if(ClassActions.classChoice().equalsIgnoreCase("rogue")){
+            damageDone = Weapons.getKnifeDamage();
+
+        }else if(ClassActions.classChoice().equalsIgnoreCase("sorcerer")){
+            damageDone = Weapons.getKnifeDamage();
+
+        }else if(ClassActions.classChoice().equalsIgnoreCase("warlock")){
+            damageDone = Weapons.getKnifeDamage();
+
+        }else if(ClassActions.classChoice().equalsIgnoreCase("wizard")){
+            damageDone = Weapons.getKnifeDamage();
         }
-        else if (weapon == "longsword")
-        {
-            weaponDamageArray = new int[]{1, 2, 3, 4, 5, 6, 7, 8};
-        }
 
-        else if (weapon == "great axe"){
-            weaponDamageArray = new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-        }
-
-        Random damage = new Random();
-        int damageDone = damage.nextInt(weaponDamageArray.length - 1);
-
+        return damageDone;
     }
 }
