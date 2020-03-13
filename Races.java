@@ -166,11 +166,11 @@ public class Races {
                 subRaceAnswer = dragonbornSubRace.next();
 
                 if(subRaceAnswer.equalsIgnoreCase("blue")){
-
+                    //add lightning attack
                 }else if(subRaceAnswer.equalsIgnoreCase("red")){
-
+                    //add fire attack
                 }else if(subRaceAnswer.equalsIgnoreCase("yellow")){
-
+                    //add thunder attack
                 }else{
                     System.out.println("Sorry, blue, red and yellow dragonborns are the only available breeds.");
                     subRaceAnswer = null;

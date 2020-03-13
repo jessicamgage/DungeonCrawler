@@ -18,4 +18,3 @@ public class Creature {
         this.hitPoints = hitPoints;
     }
 }
-

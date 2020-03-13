@@ -87,7 +87,7 @@ public class AttackIterator extends Creature{
                 int playerDamageDone = (PlayerWeapons.availableWeaponDamage(attackClass) +
                         (ModStats.modScore(ClassActions.attackModifier(attackClass)))); //pulls weapon and
                 // mod score depending on the class that the player chose -- if a barbarian is chosen,
-                // greataxe is used and strength modifier is used
+                // the great axe is used and the player's strength modifier is used
 
                 if (playerToHit >= armorClass) {
                     if (playerToHit == 20) {

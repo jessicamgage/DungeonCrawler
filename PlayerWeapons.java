@@ -11,7 +11,7 @@ public class PlayerWeapons{
             damageDone = Weapons.getGreatAxeDamage();
 
         }else if(ClassActions.classChoice().equalsIgnoreCase("bard")){
-            damageDone = Weapons.getShortswordDamage();
+            damageDone = Weapons.getShortSwordDamage();
 
         }else if(ClassActions.classChoice().equalsIgnoreCase("cleric")){
             damageDone = Weapons.getLongswordDamage();

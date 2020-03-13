@@ -4,9 +4,9 @@ public class Weapons {
 
     public static int getKnifeDamage(){
         return AttackIterator.returnRandomNumber(4) + 1;
-}
+    }
 
-    public static int getShortswordDamage(){
+    public static int getShortSwordDamage(){
         return AttackIterator.returnRandomNumber(6) + 1;
     }
 
